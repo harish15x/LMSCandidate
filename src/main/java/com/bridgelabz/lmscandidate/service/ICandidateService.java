@@ -2,11 +2,12 @@ package com.bridgelabz.lmscandidate.service;
 
 import com.bridgelabz.lmscandidate.dto.CandidateDTO;
 import com.bridgelabz.lmscandidate.model.CandidateModel;
+import com.bridgelabz.lmscandidate.util.ResponseClass;
 
 import java.util.List;
 
 public interface ICandidateService {
-    CandidateModel addCandidate(CandidateDTO candidateDTO);
+    ResponseClass addCandidate(CandidateDTO candidateDTO, String token);
 
     CandidateModel updadateCandidate(Long id, String token, CandidateDTO candidateDTO);
 

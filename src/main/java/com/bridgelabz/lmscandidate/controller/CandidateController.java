@@ -3,7 +3,10 @@ package com.bridgelabz.lmscandidate.controller;
 import com.bridgelabz.lmscandidate.dto.CandidateDTO;
 import com.bridgelabz.lmscandidate.model.CandidateModel;
 import com.bridgelabz.lmscandidate.service.ICandidateService;
+import com.bridgelabz.lmscandidate.util.ResponseClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,8 +20,9 @@ public class CandidateController {
     ICandidateService candidateService;
 
     @PostMapping("/addcandidate")
-    public CandidateModel addCandidate( @Valid @RequestBody CandidateDTO candidateDTO){
-        return candidateService.addCandidate(candidateDTO);
+    public ResponseEntity<ResponseClass> addCandidate(@Valid @RequestBody CandidateDTO candidateDTO, @RequestHeader String token){
+        ResponseClass responseClass = candidateService.addCandidate(candidateDTO, token);
+        return new ResponseEntity<>(responseClass, HttpStatus.OK);
     }
 
     @PutMapping("update/{id}")
@@ -40,11 +44,5 @@ public class CandidateController {
     public CandidateModel getCandidate(@PathVariable Long id, @RequestHeader String token) {
         return candidateService.getCandidate(id, token);
     }
-
-
-
-
-
-
 
 }

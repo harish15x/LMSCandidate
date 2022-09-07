@@ -14,6 +14,5 @@ public class CandidateExceptionHandler {
         response.setErrorCode(400);
         response.setMessage(he.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-
     }
 }
